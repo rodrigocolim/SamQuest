@@ -9,7 +9,8 @@ public class ResearcherModel {
     private String email;
     private String password;
     private ArrayList<QuestionnaireModel> questionnaires;
-    private static ResearcherModel singleton;
+    //mudar para receber o pesquisador da persistência
+    private static ResearcherModel singleton = new ResearcherModel();
     
     private ResearcherModel(){
         
