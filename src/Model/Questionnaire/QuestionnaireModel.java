@@ -1,10 +1,11 @@
 
 package Model.Questionnaire;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class QuestionnaireModel {
+public class QuestionnaireModel implements Serializable{
     private ArrayList<QuestionModel> questions;
     private String application;
     private String projectName;

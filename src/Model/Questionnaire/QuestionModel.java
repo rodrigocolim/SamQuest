@@ -9,12 +9,13 @@ import Model.Builder.DimensionProductModel;
 import Model.Builder.DirectorModel;
 import Model.Builder.DomainBuilderModel;
 import Model.Builder.ItemBuilderModel;
+import java.io.Serializable;
 
 /**
  *
  * @author Sinesyo
  */
-public class QuestionModel {
+public class QuestionModel implements Serializable{
     private String task;
     private QuestionnaireModel questionnaire;
     private DimensionProductModel[] items;

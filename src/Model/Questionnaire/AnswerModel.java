@@ -5,11 +5,13 @@
  */
 package Model.Questionnaire;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Sinesyo
  */
-public class AnswerModel {
+public class AnswerModel implements Serializable{
     private int idParticipant;
     private QuestionnaireModel questionnaire;
     private int[][] answers;
