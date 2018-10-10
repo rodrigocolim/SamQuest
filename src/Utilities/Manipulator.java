@@ -66,7 +66,7 @@ public class Manipulator {
         }
     }
 
-    public static byte[] getObject(String path) throws IOException {
+    public byte[] getObject(String path) throws IOException {
         BufferedReader buffRead = new BufferedReader(new FileReader(path));
         ByteArrayOutputStream object = new ByteArrayOutputStream();
         return object.toByteArray();

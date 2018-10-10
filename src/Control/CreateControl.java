@@ -33,9 +33,11 @@ public class CreateControl {
    }
 
     public void createQuestionnaire(String name, String org, String app) {
-        QuestionnaireModel prototype = 
-                ResearcherModel.getInstance().createPrototype(name, org, app);
-        TasksControl.getInstance().showView(prototype);
+        //intanciar o questionar e abir a view de tarefas, 
+        //quando adicionarem as tarefas, o quest vai estar pronto
+        QuestionnaireModel questionnaire = 
+            ResearcherModel.getInstance().createQuestionnaire(name, org, app);
+        TasksControl.getInstance().showView(questionnaire);
     }
 
  

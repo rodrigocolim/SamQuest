@@ -134,8 +134,11 @@ public class MainView extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        control.close(this);
+        // control é um objeto da classse MainControl que controla essa view
+         control.close(this);
+        //o metodo chamado vai dar inicio ao processo de criar um quest
         control.createQuest();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

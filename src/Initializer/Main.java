@@ -4,18 +4,33 @@
  * and open the template in the editor.
  */
 package Initializer;
-//import Model.User.ResearcherModel;
-//import View.MainView;
+import Utilities.Manipulator;
+import Model.User.ResearcherModel;
+import View.MainView;
+import java.io.IOException;
+import static java.lang.System.exit;
 /**
  *
  * @author rodri
  */
 public class Main {
-    public static void main(String[] arg){
-        //buscar o usuarios nos arquivos
-        //o pesquisador deve receber o resultado desta busca
-      //  ResearcherModel researcher = new ResearcherModel();
+    private static ResearcherModel user;
+    
+    public static void main(String[] arg) throws IOException{
+        Manipulator objectManipulator = Manipulator.getObjectManipulator();
         
-       // MainView.main(null);
+        ResearcherModel a = ResearcherModel.getInstance();
+        a.setName("Steeve");
+        a.setEmail("steeve.ohEsteeve@gmail.com");
+        a.setPassword("jeangrey");
+        objectManipulator.saveObject("User/", objectManipulator.serialize(a));
+        //buscar o usuarios nos arquivos
+      exit(0)  ;
+        byte[] fileUser = objectManipulator.getObject("User/user.");
+        user = (ResearcherModel) objectManipulator.deserialize(fileUser);
+        MainView.main(null);
+    }
+    public static ResearcherModel getUser(){
+        return user;
     }
 }

@@ -25,8 +25,7 @@ public class MainControl {
     }
     
     public void createQuest() {
-        //fechar MainView antes
-        //abri prox
+        //AQUI VAI ABRIR A VIEW PARA DE CIRAÇÃO DO QUEST
         CreateView.main(null);
     }
     public ArrayList<QuestionnaireModel> getQuest(){

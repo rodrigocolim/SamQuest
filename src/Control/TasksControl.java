@@ -6,7 +6,6 @@
 package Control;
 
 import Model.Questionnaire.QuestionnaireModel;
-import Model.User.ResearcherModel;
 import View.AddTaskView;
 import View.ObjTask;
 import View.TasksView;
@@ -19,7 +18,7 @@ import javax.swing.JLabel;
  */
 public class TasksControl {
     private static final TasksControl singleton = new TasksControl();
-    private QuestionnaireModel prototype;
+    private QuestionnaireModel questionnaire;
    
     private TasksControl(){
         
@@ -32,8 +31,10 @@ public class TasksControl {
         //desabilitar pagina anterior
         new AddTaskView().main(null);
     }
-     public void showView(QuestionnaireModel prototype) {
-        this.prototype=prototype;
+     public void showView(QuestionnaireModel questionnaire) {
+        //aqui salva o questionário onde as tarefas serão adicionadas a seguir
+         this.questionnaire=questionnaire;
+         // abre a view de tarefas
         TasksView.main(null);
     }
 
@@ -53,10 +54,9 @@ public class TasksControl {
         for(Component c: components){
             if(c instanceof ObjTask ){
                 Component[] ObjTaskComponents = ((ObjTask) c).getComponents();
-                prototype.getTasks().add(getString(ObjTaskComponents));
+                questionnaire.getTasks().add(getString(ObjTaskComponents));
             }        
         }
-        ResearcherModel.getInstance().createQuestionnaire(prototype);
         VisualizationControl.getInstance().show();
     }
 }
