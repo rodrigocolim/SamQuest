@@ -28,10 +28,10 @@ public class ResearcherModel {
     public void createQuestionnaire(QuestionnaireModel prototype){
         
     }
-    public void addFunctionality(){
+    public void addTask(){
         
     } 
-    public void organizeFunctionality(){
+    public void organizeTasks(){
         
     }
     public void saveQuestPDF(){
