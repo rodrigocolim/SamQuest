@@ -307,6 +307,8 @@ public class CreateView extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        // AQUI JA VAMOS CRIAR UM QUES SÓ COM ESSE ATRIBUTOS QUE O USARIO INFORMOU
+        //Passamos para a controle para ela proceder
         control.close(this);
         control.createQuestionnaire(
                 jTextFieldName.getText(), 
