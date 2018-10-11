@@ -39,7 +39,7 @@ public class Manipulator {
             objectInputStream.close();
             return object;
         } catch (Exception ec) {
-            System.out.println("exceção byte to obj "+ec.getMessage() );
+            System.out.println("Erro na deserialização: "+ec.getMessage());
         }
         return null;
     }

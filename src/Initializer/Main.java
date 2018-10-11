@@ -8,7 +8,7 @@ import Utilities.Manipulator;
 import Model.User.ResearcherModel;
 import View.MainView;
 import java.io.IOException;
-import static java.lang.System.exit;
+import org.apache.commons.lang3.SerializationUtils;
 /**
  *
  * @author rodri
@@ -20,14 +20,11 @@ public class Main {
         Manipulator objectManipulator = Manipulator.getObjectManipulator();
         
         ResearcherModel a = ResearcherModel.getInstance();
-        a.setName("Steeve");
-        a.setEmail("steeve.ohEsteeve@gmail.com");
-        a.setPassword("jeangrey");
-        objectManipulator.saveObject("User/", objectManipulator.serialize(a));
-        //buscar o usuarios nos arquivos
-      exit(0)  ;
-        byte[] fileUser = objectManipulator.getObject("User/user.");
-        user = (ResearcherModel) objectManipulator.deserialize(fileUser);
+        a.setName("0i");
+        objectManipulator.saveObject("User/user.sav", SerializationUtils.serialize(a));
+        byte[] fileUser = objectManipulator.getObject("User/user.sav");
+        user = (ResearcherModel) SerializationUtils.deserialize(fileUser);
+        System.out.println(user.getName()+" "+user.getEmail());
         MainView.main(null);
     }
     public static ResearcherModel getUser(){
