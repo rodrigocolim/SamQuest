@@ -5,6 +5,8 @@
  */
 package View;
 
+import View.Objects.NothingObj;
+import View.Objects.ObjQuest;
 import Control.MainControl;
 import Model.Questionnaire.QuestionnaireModel;
 import java.awt.GridLayout;
@@ -16,21 +18,35 @@ import java.util.ArrayList;
  * @author rodri
  */
 public class MainView extends javax.swing.JFrame {
-    private MainControl control = MainControl.getInstance();
+    private final MainControl control = MainControl.getInstance();
+    private static final MainView view = new MainView();
     /**
      * Creates new form NewJFrame
      */
-    public MainView() {
+    private MainView() {
         initComponents();
         showQuestionnaires();
     }
+    public static MainView getViewSingleton(){
+        return view;
+    }
+    public void updateQuestionnaires(QuestionnaireModel questionaire){
+        
+        showQuestionnaires();
+    }
+    //---------------------------------------------//
+    private void add(QuestionnaireModel questionnaire){
+        ObjQuest a = new ObjQuest(questionnaire.getProjectName());
+        jQuestionnaires.add(a);
+    }
     private void showQuestionnaires(){
-        ArrayList<QuestionnaireModel> quest = control.getQuest();
-        if(quest !=null){
+        jQuestionnaires.removeAll();
+        ArrayList<QuestionnaireModel> quest = control.getQuestionnaires();
+        if(quest.size()>0){
+            
             jQuestionnaires.setLayout(new java.awt.GridLayout(quest.size(), 1, 5, 5));
             for(QuestionnaireModel q: quest){
-                ObjQuest a = new ObjQuest(q.getProjectName());
-                jQuestionnaires.add(a);
+                add(q);
             }
         }else{
             //mostrar mensagem que nao possui nenhum
@@ -38,9 +54,14 @@ public class MainView extends javax.swing.JFrame {
             NothingObj a = new NothingObj();
             jQuestionnaires.add(a);
         }
-       jQuestionnaires.revalidate();
-            jQuestionnaires.repaint();
+        jQuestionnaires.revalidate();
+        jQuestionnaires.repaint();
     }
+   
+    private void close(){
+        dispose();
+    }
+    //---------------------------------------------------------//
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,50 +72,54 @@ public class MainView extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jQuestionnaires = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jButtonCreate = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(600, 300));
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 204));
+        jPanel1.setBackground(new java.awt.Color(33, 177, 192));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("SAMQuest");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("TUXE");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(232, 232, 232)
-                .addComponent(jLabel1)
-                .addContainerGap())
+            .addGap(0, 610, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel4)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 66, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel4)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seus Questionários", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
 
         jQuestionnaires.setMinimumSize(new java.awt.Dimension(426, 126));
-        jQuestionnaires.setLayout(new java.awt.GridLayout());
+        jQuestionnaires.setLayout(new java.awt.GridLayout(1, 0));
         jScrollPane1.setViewportView(jQuestionnaires);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
-        jButton1.setText("+ Criar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCreate.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        jButtonCreate.setText("+ Criar");
+        jButtonCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonCreateActionPerformed(evt);
             }
         });
 
@@ -113,7 +138,7 @@ public class MainView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonCreate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -125,21 +150,21 @@ public class MainView extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jButtonCreate)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateActionPerformed
         // TODO add your handling code here:
         // control é um objeto da classse MainControl que controla essa view
-         control.close(this);
+        setVisible(false);
         //o metodo chamado vai dar inicio ao processo de criar um quest
-        control.createQuest();
+        control.advanceToNextView();
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonCreateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,9 +202,9 @@ public class MainView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButtonCreate;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jQuestionnaires;
     private javax.swing.JScrollPane jScrollPane1;

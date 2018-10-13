@@ -9,8 +9,8 @@ package Model.Builder;
  *
  * @author rodri
  */
-public abstract class ItemBuilderModel {
-    protected DimensionProductModel item;
+public abstract class DimensionBuilderModel {
+    protected DimensionProductModel dimension;
     
    
     /**
@@ -22,6 +22,6 @@ public abstract class ItemBuilderModel {
     public abstract String buildStatement();
     
     public DimensionProductModel getItem(){
-        return this.item;
+        return this.dimension;
     }
 }

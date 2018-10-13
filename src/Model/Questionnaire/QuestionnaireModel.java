@@ -6,11 +6,10 @@ import java.util.ArrayList;
 
 
 public class QuestionnaireModel implements Serializable{
-    private ArrayList<QuestionModel> questions;
+    private ArrayList<TaskModel> tasks;
     private String application;
     private String projectName;
     private String institution;
-    private ArrayList<String> tasks;
     private ArrayList<AnswerModel> results;
 
     public QuestionnaireModel(String name, String org, String app) {
@@ -27,7 +26,7 @@ public class QuestionnaireModel implements Serializable{
     public String getProjectName(){
         return this.projectName;
     }
-    public ArrayList<String> getTasks(){
+    public ArrayList<TaskModel> getTasks(){
         return this.tasks;
     }
 }

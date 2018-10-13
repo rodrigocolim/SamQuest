@@ -12,4 +12,22 @@ package Model.Builder;
 public class DimensionProductModel {
     private String statement;
     private byte[] scale;
+
+    public String getStatement() {
+        return statement;
+    }
+
+    public void setStatement(String statement) {
+        this.statement = statement;
+    }
+
+    public byte[] getScale() {
+        return scale;
+    }
+
+    public void setScale(byte[] scale) {
+        this.scale = scale;
+    }
+    
+   
 }

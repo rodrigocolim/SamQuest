@@ -6,6 +6,7 @@
 package Control;
 
 import Model.Questionnaire.QuestionnaireModel;
+import Model.User.ResearcherModel;
 import View.CreateView;
 import View.MainView;
 import java.util.ArrayList;
@@ -17,31 +18,29 @@ import java.util.ArrayList;
 public class MainControl {
     private static MainControl singleton = new MainControl();
     
+    
     private MainControl(){
         
     }
     public static MainControl getInstance(){
         return singleton;
     }
-    
-    public void createQuest() {
-        //AQUI VAI ABRIR A VIEW PARA DE CIRAÇÃO DO QUEST
-        CreateView.main(null);
+    //------------------------------------------------//
+    public void start(){
+        MainView.getViewSingleton().main(null);
     }
-    public ArrayList<QuestionnaireModel> getQuest(){
-        // acessar pasta de questionarios
-        //deserialiar cada arquivo na pasta
-        //retornar cada questionario
-        return null;
+    public void showView(){
+        MainView.getViewSingleton().setVisible(true);
     }
-    
-     static void show() {
-        new MainView().setVisible(true);
+    public void showView(QuestionnaireModel questionnaire){
+        MainView.getViewSingleton().setVisible(true);
+        MainView.getViewSingleton().updateQuestionnaires(questionnaire);
     }
-    
-    public void close(MainView aThis) {
-        aThis.setVisible(false);
+    public void advanceToNextView() {
+        CreateControl.getInstance().showView();
     }
-    
-    
+    public ArrayList<QuestionnaireModel> getQuestionnaires(){
+        return ResearcherModel.getInstance().getQuestionnaires();
+    }
+    //-----------------------------------------------//
 }

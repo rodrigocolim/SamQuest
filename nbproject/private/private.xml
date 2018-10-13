@@ -3,8 +3,27 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/Utilities/Manipulator.java</file>
-            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/View/ViewGerarPDF.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/Model/Builder/DimensionBuilderModel.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/Model/Builder/DirectorModel.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/Control/TasksControl.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/View/AddTaskView.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/Control/MainControl.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/View/VisualizationView.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/Model/Builder/DomainBuilderModel.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/View/Objects/ObjQuest.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/View/TasksView.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/Initializer/Main.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/Control/VisualizationControl.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/Control/CreateControl.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/Model/Builder/DimensionProductModel.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/Control/AddTaskControl.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/Model/Questionnaire/QuestionnaireModel.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/View/MainView.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/View/Objects/NothingObj.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/Model/User/ResearcherModel.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/Model/Questionnaire/TaskModel.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/View/Objects/ObjTask.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/NetBeansProjects/SamQuest/src/View/CreateView.java</file>
         </group>
     </open-files>
 </project-private>

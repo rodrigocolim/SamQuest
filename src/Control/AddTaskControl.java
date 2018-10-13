@@ -5,11 +5,17 @@
  */
 package Control;
 
+import Model.Questionnaire.QuestionnaireModel;
+import Model.User.ResearcherModel;
+import View.AddTaskView;
+import View.Objects.ObjTask;
+
 /**
  *
  * @author rodri
  */
 public class AddTaskControl {
+    private QuestionnaireModel questionnaire;
     private static AddTaskControl singleton = new AddTaskControl(); 
     
     private AddTaskControl(){
@@ -18,8 +24,18 @@ public class AddTaskControl {
     public static AddTaskControl getInstance(){
         return singleton;
     }
-    public void add(String task){
-        //pegarQuestionario e adicionar a string no vetor
-        //fechar janela
+    public void addTask(String nomeTask){
+        ResearcherModel.getInstance().addTask(nomeTask, questionnaire);
+        //chamar um metodo no tasks control para atualizar as tarefas;
+        TasksControl.getInstance().updateJPanel();
+    }
+
+    public void showView(QuestionnaireModel questionnaire) {
+        this.questionnaire=questionnaire;
+        new AddTaskView().main(null);
+    }
+
+    public void close(AddTaskView aThis) {
+        aThis.setVisible(false);
     }
 }

@@ -10,18 +10,18 @@ package Model.Builder;
  * @author rodri
  */
 public class DirectorModel {
-    protected ItemBuilderModel automaker;
+    protected DimensionBuilderModel automaker;
     
-    public DirectorModel(ItemBuilderModel automaker){
+    public DirectorModel(DimensionBuilderModel automaker){
         this.automaker= automaker;
     }
     
-    public void buildItem(){
+    public void buildDimension(){
         automaker.buildScale();
         automaker.buildStatement();
         
     }
-    public DimensionProductModel getItem(){
+    public DimensionProductModel getDimension(){
         return automaker.getItem();
     }
 }

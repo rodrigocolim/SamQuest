@@ -15,6 +15,7 @@ import Model.Questionnaire.QuestionnaireModel;
  */
 public class CreateView extends javax.swing.JFrame {
     private CreateControl control = CreateControl.getInstance();
+    private CreateView view;
     /**
      * Creates new form CreateView
      */
@@ -50,8 +51,8 @@ public class CreateView extends javax.swing.JFrame {
         label2 = new java.awt.Label();
         jTextFieldApp = new javax.swing.JTextField();
         label3 = new java.awt.Label();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonAdvance = new javax.swing.JButton();
+        jButtonCancel = new javax.swing.JButton();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jFrame1.setBackground(new java.awt.Color(255, 255, 255));
@@ -149,28 +150,33 @@ public class CreateView extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel3.setBackground(new java.awt.Color(0, 102, 204));
+        jPanel3.setBackground(new java.awt.Color(33, 177, 192));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("SAMQuest");
+        jLabel4.setText("TUXE");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(232, 232, 232)
-                .addComponent(jLabel4)
-                .addContainerGap())
+            .addGap(0, 610, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel4)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 66, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel4)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         jLabel5.setText("Seuqencia de passos");
@@ -236,21 +242,21 @@ public class CreateView extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("Avançar");
-        jButton2.setToolTipText("");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAdvance.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonAdvance.setText("Avançar");
+        jButtonAdvance.setToolTipText("");
+        jButtonAdvance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonAdvanceActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton3.setText("Cancelar");
-        jButton3.setToolTipText("");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCancel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonCancel.setText("Cancelar");
+        jButtonCancel.setToolTipText("");
+        jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonCancelActionPerformed(evt);
             }
         });
 
@@ -270,13 +276,13 @@ public class CreateView extends javax.swing.JFrame {
                         .addGap(0, 42, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(jButtonAdvance)
                         .addGap(8, 8, 8)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(20, 20, 20)
-                    .addComponent(jButton3)
+                    .addComponent(jButtonCancel)
                     .addContainerGap(505, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -288,12 +294,12 @@ public class CreateView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(jButtonAdvance)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(344, Short.MAX_VALUE)
-                    .addComponent(jButton3)
+                    .addComponent(jButtonCancel)
                     .addContainerGap()))
         );
 
@@ -305,16 +311,19 @@ public class CreateView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonAdvanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdvanceActionPerformed
         // TODO add your handling code here:
         // AQUI JA VAMOS CRIAR UM QUES SÓ COM ESSE ATRIBUTOS QUE O USARIO INFORMOU
         //Passamos para a controle para ela proceder
-        control.close(this);
-        control.createQuestionnaire(
+        close();
+        control.advanceToNextView(
+            control.createQuestionnaire(
                 jTextFieldName.getText(), 
                 jTextFieldOrg.getText(), 
-                jTextFieldApp.getText());
-    }//GEN-LAST:event_jButton2ActionPerformed
+                jTextFieldApp.getText()
+            )
+        );
+    }//GEN-LAST:event_jButtonAdvanceActionPerformed
 
     private void jTextFieldOrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldOrgActionPerformed
         // TODO add your handling code here:
@@ -324,10 +333,11 @@ public class CreateView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldAppActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
         // TODO add your handling code here:
-        control.cancel(this);
-    }//GEN-LAST:event_jButton3ActionPerformed
+        close();
+        control.cancel();
+    }//GEN-LAST:event_jButtonCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -366,8 +376,8 @@ public class CreateView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonAdvance;
+    private javax.swing.JButton jButtonCancel;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -387,4 +397,8 @@ public class CreateView extends javax.swing.JFrame {
     private java.awt.Label label2;
     private java.awt.Label label3;
     // End of variables declaration//GEN-END:variables
+
+    private void close() {
+        dispose();
+    }
 }

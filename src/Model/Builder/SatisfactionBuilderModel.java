@@ -9,7 +9,7 @@ package Model.Builder;
  *
  * @author rodri
  */
-public class SatisfactionBuilderModel extends ItemBuilderModel{
+public class SatisfactionBuilderModel extends DimensionBuilderModel{
       @Override
     public byte[] buildScale() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

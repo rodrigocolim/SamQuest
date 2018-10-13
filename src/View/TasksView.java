@@ -5,7 +5,10 @@
  */
 package View;
 
+import View.Objects.ObjTask;
 import Control.TasksControl;
+import Model.Questionnaire.QuestionnaireModel;
+import Model.Questionnaire.TaskModel;
 
 /**
  *
@@ -13,21 +16,34 @@ import Control.TasksControl;
  */
 public class TasksView extends javax.swing.JFrame {
     private TasksControl control = TasksControl.getInstance();
+    private static TasksView view;
     /**
      * Creates new form TasksView
      */
-    public TasksView() {
+    private TasksView() {
         initComponents();
+        view = this;
         showTasks();
     }
-     private void showTasks(){
-       // for(int i=0; i<10; i++){
-            ObjTask a = new ObjTask();
-            jPanelTasks.add(a);
-     //   }
-        
+    public static TasksView getView(){
+        return view;
+    }
+
+    public void showTasks(){
+         if(control.getQuestionnaire().getTasks()!=null){
+             jPanelTasks.removeAll();
+            
+            for(TaskModel task : control.getQuestionnaire().getTasks()){
+                
+                ObjTask obj = new ObjTask(task.getName());
+                jPanelTasks.add(obj);
+            }
             jPanelTasks.revalidate();
             jPanelTasks.repaint();
+         }else{
+             //mostrar uma mensagem "não há tarefas"
+         }    
+            
     }
     /**
     
@@ -43,20 +59,20 @@ public class TasksView extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonCancel = new javax.swing.JButton();
+        jButtonAdvance = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanelTasks = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonBack = new javax.swing.JButton();
+        jButtonAddTask = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel3.setBackground(new java.awt.Color(0, 102, 204));
+        jPanel3.setBackground(new java.awt.Color(33, 177, 192));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("SAMQuest");
+        jLabel4.setText("TUXE");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -77,16 +93,21 @@ public class TasksView extends javax.swing.JFrame {
 
         jLabel5.setText("Seuqencia de passos");
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton3.setText("Cancelar");
-        jButton3.setToolTipText("");
-
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("Avançar");
-        jButton2.setToolTipText("");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCancel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonCancel.setText("Cancelar");
+        jButtonCancel.setToolTipText("");
+        jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonCancelActionPerformed(evt);
+            }
+        });
+
+        jButtonAdvance.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonAdvance.setText("Avançar");
+        jButtonAdvance.setToolTipText("");
+        jButtonAdvance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdvanceActionPerformed(evt);
             }
         });
 
@@ -96,14 +117,19 @@ public class TasksView extends javax.swing.JFrame {
         jPanelTasks.setLayout(new java.awt.GridLayout(10, 1, 10, 10));
         jScrollPane1.setViewportView(jPanelTasks);
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton4.setText("Voltar");
-        jButton4.setToolTipText("");
-
-        jButton1.setText("Adicionar Tarefa");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonBack.setText("Voltar");
+        jButtonBack.setToolTipText("");
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonBackActionPerformed(evt);
+            }
+        });
+
+        jButtonAddTask.setText("Adicionar Tarefa");
+        jButtonAddTask.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddTaskActionPerformed(evt);
             }
         });
 
@@ -119,20 +145,20 @@ public class TasksView extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton3)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(211, 211, 211)
-                                        .addComponent(jButton1)))
+                                .addComponent(jButtonCancel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4)
+                                .addComponent(jButtonBack)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)))
+                                .addComponent(jButtonAdvance)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(55, 55, 55))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(217, 217, 217)
+                .addComponent(jButtonAddTask)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,31 +168,42 @@ public class TasksView extends javax.swing.JFrame {
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(19, 19, 19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(jButtonAddTask)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(jButtonAdvance)
+                    .addComponent(jButtonCancel)
+                    .addComponent(jButtonBack))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonAdvanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdvanceActionPerformed
         // TODO add your handling code here:
-        //pegar tarefas
-        TasksControl.getInstance().close(this);
-        TasksControl.getInstance().createQuestionnaire(jPanelTasks.getComponents());
+        close();
+        TasksControl.getInstance().advanceToNextView();
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonAdvanceActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonAddTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddTaskActionPerformed
         // TODO add your handling code here:
         control.addTask();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonAddTaskActionPerformed
+
+    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
+        // TODO add your handling code here:
+        close();
+        control.cancel();
+    }//GEN-LAST:event_jButtonCancelActionPerformed
+
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+        // TODO add your handling code here:
+        close();
+        control.back();
+    }//GEN-LAST:event_jButtonBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,14 +241,18 @@ public class TasksView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonAddTask;
+    private javax.swing.JButton jButtonAdvance;
+    private javax.swing.JButton jButtonBack;
+    private javax.swing.JButton jButtonCancel;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelTasks;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void close() {
+        dispose();
+    }
 }

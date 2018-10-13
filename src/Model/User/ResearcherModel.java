@@ -2,6 +2,7 @@
 package Model.User;
 
 import Model.Questionnaire.QuestionnaireModel;
+import Model.Questionnaire.TaskModel;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -26,8 +27,8 @@ public class ResearcherModel implements Serializable {
     public void deleteQuestionnaire(){
     
     }
-    public void addTask(){
-        
+    public void addTask(String nameTask, QuestionnaireModel questionnaire){
+        questionnaire.getTasks().add(new TaskModel(nameTask));
     } 
     public void organizeTasks(){
         
@@ -45,8 +46,9 @@ public class ResearcherModel implements Serializable {
         return singleton;
     }
     public QuestionnaireModel createQuestionnaire(String name,String org,String app){
-        return new QuestionnaireModel(name,org,app);
-        //chamar controlador para exibir view de tarefas
+        QuestionnaireModel questionnaire = new QuestionnaireModel(name, org, app);
+        this.questionnaires.add(questionnaire);
+        return questionnaire;
     }
     
     //----------------------------//

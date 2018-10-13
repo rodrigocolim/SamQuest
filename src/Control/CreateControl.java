@@ -15,6 +15,7 @@ import View.CreateView;
  */
 public class CreateControl {
     private static final CreateControl singleton = new CreateControl();
+    private static CreateView createView;
     
     private CreateControl (){
         
@@ -22,23 +23,20 @@ public class CreateControl {
     public static CreateControl getInstance(){
         return singleton;
     }
-
-    public void cancel(CreateView aThis) {
-       close(aThis);
-        MainControl.show();
+    //------------------------------------------------------------------------//
+    public void showView(){
+        CreateView.main(null);
     }
-
-   public void close(CreateView aThis){
-        aThis.setVisible(false);
+    public void cancel() {  
+        MainControl.getInstance().showView();
+    }
+   public void advanceToNextView(QuestionnaireModel questionnaire){
+       TasksControl.getInstance().showView(questionnaire);
    }
-
-    public void createQuestionnaire(String name, String org, String app) {
-        //intanciar o questionar e abir a view de tarefas, 
+    public QuestionnaireModel createQuestionnaire(String name, String org, String app) {
+        //intanciar o questionar sem tarefas, 
         //quando adicionarem as tarefas, o quest vai estar pronto
-        QuestionnaireModel questionnaire = 
-            ResearcherModel.getInstance().createQuestionnaire(name, org, app);
-        TasksControl.getInstance().showView(questionnaire);
-    }
-
- 
+        return ResearcherModel.getInstance().createQuestionnaire(name, org, app);
+        
+    } 
 }

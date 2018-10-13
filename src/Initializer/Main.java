@@ -21,8 +21,8 @@ public class Main {
         
         ResearcherModel a = ResearcherModel.getInstance();
         a.setName("0i");
-        objectManipulator.saveObject("User/user.sav", SerializationUtils.serialize(a));
-        byte[] fileUser = objectManipulator.getObject("User/user.sav");
+        objectManipulator.saveObject("User/user.arq", SerializationUtils.serialize(a));
+        byte[] fileUser = objectManipulator.getObject("User/user.arq");
         user = (ResearcherModel) SerializationUtils.deserialize(fileUser);
         System.out.println(user.getName()+" "+user.getEmail());
         MainView.main(null);
