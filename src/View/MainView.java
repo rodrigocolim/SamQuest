@@ -6,9 +6,9 @@
 package View;
 
 import View.Objects.NothingObj;
-import View.Objects.ObjQuest;
 import Control.MainControl;
 import Model.Questionnaire.QuestionnaireModel;
+import View.Objects.ObjQuest;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.util.ArrayList;
@@ -43,8 +43,11 @@ public class MainView extends javax.swing.JFrame {
         jQuestionnaires.removeAll();
         ArrayList<QuestionnaireModel> quest = control.getQuestionnaires();
         if(quest.size()>0){
-            
-            jQuestionnaires.setLayout(new java.awt.GridLayout(quest.size(), 1, 5, 5));
+            if(quest.size()<4){
+                jQuestionnaires.setLayout(new java.awt.GridLayout(4, 1, 1, 1));    
+            }else{
+                jQuestionnaires.setLayout(new java.awt.GridLayout(quest.size(), 1, 1, 1));
+            }
             for(QuestionnaireModel q: quest){
                 add(q);
             }
@@ -80,7 +83,9 @@ public class MainView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setMinimumSize(new java.awt.Dimension(600, 300));
+        setMaximumSize(new java.awt.Dimension(610, 380));
+        setMinimumSize(new java.awt.Dimension(610, 380));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(33, 177, 192));
 

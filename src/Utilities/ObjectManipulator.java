@@ -19,15 +19,15 @@ import java.io.ObjectOutputStream;
  *
  * @author rodri
  */
-public class Manipulator {
+public class ObjectManipulator {
 
-    private static final Manipulator objectManipulator = new Manipulator();
+    private static final ObjectManipulator objectManipulator = new ObjectManipulator();
 
-    private Manipulator() {
+    private ObjectManipulator() {
 
     }
 
-    public static Manipulator getObjectManipulator() {
+    public static ObjectManipulator getObjectManipulator() {
         return objectManipulator;
     }
 
@@ -39,7 +39,7 @@ public class Manipulator {
             objectInputStream.close();
             return object;
         } catch (Exception ec) {
-            System.out.println("Erro na deserialização: "+ec.getMessage());
+            System.out.println("Erro na deserialização: " + ec.getMessage());
         }
         return null;
     }

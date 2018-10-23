@@ -10,16 +10,16 @@ package Model.Builder;
  * @author rodri
  */
 public abstract class DimensionBuilderModel {
-    protected DimensionProductModel dimension;
+    protected DimensionProductModel dimension = new DimensionProductModel();
     
    
     /**
      *
      * @return the sam Scale of a dimension
      */
-    public abstract byte[] buildScale();
+    public abstract void buildScale();
     
-    public abstract String buildStatement();
+    public abstract void buildStatement();
     
     public DimensionProductModel getItem(){
         return this.dimension;

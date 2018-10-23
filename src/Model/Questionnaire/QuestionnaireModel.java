@@ -29,4 +29,7 @@ public class QuestionnaireModel implements Serializable{
     public ArrayList<TaskModel> getTasks(){
         return this.tasks;
     }
+    public String getApplication(){
+        return this.application;
+    }
 }

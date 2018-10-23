@@ -7,6 +7,7 @@ package Control;
 
 import Model.Questionnaire.TaskModel;
 import Model.Questionnaire.QuestionnaireModel;
+import Utilities.PDFManipulator;
 import View.VisualizationView;
 
 /**
@@ -40,5 +41,9 @@ public class VisualizationControl {
     }
     public void conclude() {
         MainControl.getInstance().showView(questionnaire);
+    }
+
+    public void save() {
+        PDFManipulator.generatePDF(questionnaire, "Questionnaires");
     }
 }

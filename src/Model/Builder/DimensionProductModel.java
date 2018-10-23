@@ -5,13 +5,15 @@
  */
 package Model.Builder;
 
+import com.itextpdf.text.Image;
+
 /**
  *
  * @author rodri
  */
 public class DimensionProductModel {
     private String statement;
-    private byte[] scale;
+    private String scale;
 
     public String getStatement() {
         return statement;
@@ -21,11 +23,11 @@ public class DimensionProductModel {
         this.statement = statement;
     }
 
-    public byte[] getScale() {
+    public String getScale() {
         return scale;
     }
 
-    public void setScale(byte[] scale) {
+    public void setScale(String scale) {
         this.scale = scale;
     }
     

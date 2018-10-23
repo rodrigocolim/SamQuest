@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Initializer;
-import Utilities.Manipulator;
+import Utilities.ObjectManipulator;
 import Model.User.ResearcherModel;
 import View.MainView;
 import java.io.IOException;
@@ -17,7 +17,7 @@ public class Main {
     private static ResearcherModel user;
     
     public static void main(String[] arg) throws IOException{
-        Manipulator objectManipulator = Manipulator.getObjectManipulator();
+        ObjectManipulator objectManipulator = ObjectManipulator.getObjectManipulator();
         
         ResearcherModel a = ResearcherModel.getInstance();
         a.setName("0i");

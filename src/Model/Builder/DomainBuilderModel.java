@@ -5,6 +5,12 @@
  */
 package Model.Builder;
 
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.Image;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author rodri
@@ -12,16 +18,13 @@ package Model.Builder;
 public class DomainBuilderModel extends DimensionBuilderModel{
 
     @Override
-    public byte[] buildScale() {
-        //buscar a imagem correspondente que tá la pasta "questoes"
-        //dimension.setScale(null);
-        //a mesma coisa faz para o enunciado q ta na mesma pasta também
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void buildScale() {
+        dimension.setScale("Capturar.jpg");
     }
 
     @Override
-    public String buildStatement() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void buildStatement() {
+        dimension.setStatement("Qual o seu nível de sentimento de controle?");
     }
     
 }

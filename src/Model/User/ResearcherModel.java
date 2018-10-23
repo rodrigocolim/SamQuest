@@ -15,7 +15,7 @@ public class ResearcherModel implements Serializable {
     private static final ResearcherModel singleton = new ResearcherModel();
     
     private ResearcherModel(){
-        
+        this.questionnaires = new ArrayList<QuestionnaireModel>();
     }
     
     public void editQuestionnaire(){

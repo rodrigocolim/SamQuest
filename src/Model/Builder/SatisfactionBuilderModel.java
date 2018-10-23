@@ -5,18 +5,22 @@
  */
 package Model.Builder;
 
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.Image;
+import java.io.IOException;
+
 /**
  *
  * @author rodri
  */
 public class SatisfactionBuilderModel extends DimensionBuilderModel{
       @Override
-    public byte[] buildScale() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void buildScale() {
+        dimension.setScale("Questions/SatisfactionImage.png");
     }
 
     @Override
-    public String buildStatement() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void buildStatement() {
+        dimension.setStatement("Qual o seu nível de satisfação?");
     }
 }
