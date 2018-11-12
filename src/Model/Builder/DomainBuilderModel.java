@@ -19,7 +19,7 @@ public class DomainBuilderModel extends DimensionBuilderModel{
 
     @Override
     public void buildScale() {
-        dimension.setScale("Capturar.jpg");
+        dimension.setScale("Questions/DomainImage.png");
     }
 
     @Override

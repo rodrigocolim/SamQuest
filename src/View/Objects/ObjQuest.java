@@ -5,18 +5,28 @@
  */
 package View.Objects;
 
+import Control.MainControl;
+import Control.ResponseControl;
+import Control.TasksControl;
+import Model.Questionnaire.QuestionnaireModel;
+import Model.User.ResearcherModel;
+import com.itextpdf.text.DocumentException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author rodri
  */
 public class ObjQuest extends javax.swing.JPanel {
-
+    private final QuestionnaireModel questionnaire;
     /**
      * Creates new form ObjQuest2
+     * @param questionnaire
      */
-    public ObjQuest(String name) {
+    public ObjQuest(QuestionnaireModel questionnaire) {
         initComponents();
-        projectName.setText(name);
+        this.questionnaire=questionnaire;
+        projectName.setText(questionnaire.getProjectName());
     }
 
     /**
@@ -28,50 +38,107 @@ public class ObjQuest extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuEdit = new javax.swing.JMenuItem();
+        jMenuReply = new javax.swing.JMenuItem();
+        jMenuResults = new javax.swing.JMenuItem();
+        jSavePDFItem = new javax.swing.JMenuItem();
         jLabel2 = new javax.swing.JLabel();
         projectName = new java.awt.Label();
-        jLabel4 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jMenuEdit.setText("Editar");
+        jMenuEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuEditActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuEdit);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icon_questionnaire.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
+        jMenuReply.setText("Responder");
+        jMenuReply.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuReplyActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuReply);
 
+        jMenuResults.setText("Resultados");
+        jMenuResults.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuResultsActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuResults);
+
+        jSavePDFItem.setText("Salvar PDF");
+        jSavePDFItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSavePDFItemActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jSavePDFItem);
+
+        setBackground(new java.awt.Color(222, 222, 222));
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        setMaximumSize(new java.awt.Dimension(90, 100));
+        setMinimumSize(new java.awt.Dimension(90, 100));
+        setPreferredSize(new java.awt.Dimension(90, 100));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icon_questionnaire_22.png"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 2, 70, 60));
+
+        projectName.setAlignment(java.awt.Label.CENTER);
         projectName.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         projectName.setText("label2");
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icon_dinamic-menu.png"))); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addComponent(projectName, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(projectName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        add(projectName, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 68, 20));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        System.out.println("clicou");
+        jPopupMenu1.show(this, 50, 50);
+    }//GEN-LAST:event_formMouseClicked
+
+    private void jSavePDFItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSavePDFItemActionPerformed
+        // TODO add your handling code here:
+        ResearcherModel.getInstance().saveQuestPDF(questionnaire);
+        JOptionPane.showMessageDialog(null, "Questionário salvo na pasta Questionnaires!", null, JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jSavePDFItemActionPerformed
+
+    private void jMenuEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEditActionPerformed
+        // TODO add your handling code here:
+        MainControl.getInstance().close();
+        TasksControl.getInstance().showView(questionnaire);
+    }//GEN-LAST:event_jMenuEditActionPerformed
+
+    private void jMenuResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuResultsActionPerformed
+        try {
+            ResearcherModel.getInstance().saveResultPDF(questionnaire);
+        } catch (DocumentException ex) {
+            System.out.println(ex.getMessage());
+        }
+        JOptionPane.showMessageDialog(null, "Respostas salvas na pasta Resultados!", null, JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jMenuResultsActionPerformed
+
+    private void jMenuReplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuReplyActionPerformed
+        // TODO add your handling code here:
+         System.out.println("clicou em responder/MouseClicked");
+        ResponseControl.getInstance().showView(questionnaire);
+    }//GEN-LAST:event_jMenuReplyActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenuItem jMenuEdit;
+    private javax.swing.JMenuItem jMenuReply;
+    private javax.swing.JMenuItem jMenuResults;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JMenuItem jSavePDFItem;
     private java.awt.Label projectName;
     // End of variables declaration//GEN-END:variables
 }

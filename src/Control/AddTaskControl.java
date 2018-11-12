@@ -16,7 +16,7 @@ import View.Objects.ObjTask;
  */
 public class AddTaskControl {
     private QuestionnaireModel questionnaire;
-    private static AddTaskControl singleton = new AddTaskControl(); 
+    private static final AddTaskControl singleton = new AddTaskControl(); 
     
     private AddTaskControl(){
         
@@ -32,10 +32,7 @@ public class AddTaskControl {
 
     public void showView(QuestionnaireModel questionnaire) {
         this.questionnaire=questionnaire;
-        new AddTaskView().main(null);
+        AddTaskView.main(null);
     }
-
-    public void close(AddTaskView aThis) {
-        aThis.setVisible(false);
-    }
+   
 }

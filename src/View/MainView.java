@@ -12,6 +12,7 @@ import View.Objects.ObjQuest;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.util.ArrayList;
+import javax.swing.JPanel;
 
 /**
  *
@@ -19,52 +20,19 @@ import java.util.ArrayList;
  */
 public class MainView extends javax.swing.JFrame {
     private final MainControl control = MainControl.getInstance();
-    private static final MainView view = new MainView();
+    private static final MainView viewSingleton = new MainView();
     /**
      * Creates new form NewJFrame
      */
     private MainView() {
         initComponents();
         showQuestionnaires();
+     
     }
     public static MainView getViewSingleton(){
-        return view;
+        return viewSingleton;
     }
-    public void updateQuestionnaires(QuestionnaireModel questionaire){
-        
-        showQuestionnaires();
-    }
-    //---------------------------------------------//
-    private void add(QuestionnaireModel questionnaire){
-        ObjQuest a = new ObjQuest(questionnaire.getProjectName());
-        jQuestionnaires.add(a);
-    }
-    private void showQuestionnaires(){
-        jQuestionnaires.removeAll();
-        ArrayList<QuestionnaireModel> quest = control.getQuestionnaires();
-        if(quest.size()>0){
-            if(quest.size()<4){
-                jQuestionnaires.setLayout(new java.awt.GridLayout(4, 1, 1, 1));    
-            }else{
-                jQuestionnaires.setLayout(new java.awt.GridLayout(quest.size(), 1, 1, 1));
-            }
-            for(QuestionnaireModel q: quest){
-                add(q);
-            }
-        }else{
-            //mostrar mensagem que nao possui nenhum
-           
-            NothingObj a = new NothingObj();
-            jQuestionnaires.add(a);
-        }
-        jQuestionnaires.revalidate();
-        jQuestionnaires.repaint();
-    }
-   
-    private void close(){
-        dispose();
-    }
-    //---------------------------------------------------------//
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,7 +51,6 @@ public class MainView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(610, 380));
         setMinimumSize(new java.awt.Dimension(610, 380));
         setResizable(false);
 
@@ -97,7 +64,7 @@ public class MainView extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 610, Short.MAX_VALUE)
+            .addGap(0, 609, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -117,7 +84,7 @@ public class MainView extends javax.swing.JFrame {
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seus Questionários", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
 
         jQuestionnaires.setMinimumSize(new java.awt.Dimension(426, 126));
-        jQuestionnaires.setLayout(new java.awt.GridLayout(1, 0));
+        jQuestionnaires.setLayout(new java.awt.GridLayout(2, 5, 1, 1));
         jScrollPane1.setViewportView(jQuestionnaires);
 
         jButtonCreate.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
@@ -136,15 +103,13 @@ public class MainView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(533, 533, 533)
-                .addComponent(jLabel2)
-                .addGap(0, 9, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jButtonCreate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButtonCreate, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +118,7 @@ public class MainView extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jLabel2)
                 .addGap(1, 1, 1)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonCreate)
                 .addContainerGap())
@@ -165,7 +130,7 @@ public class MainView extends javax.swing.JFrame {
     private void jButtonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateActionPerformed
         // TODO add your handling code here:
         // control é um objeto da classse MainControl que controla essa view
-        setVisible(false);
+        setEnabled(false);
         //o metodo chamado vai dar inicio ao processo de criar um quest
         control.advanceToNextView();
         
@@ -214,4 +179,50 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JPanel jQuestionnaires;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    //---------------------------------------------//
+    private void addObject(QuestionnaireModel questionnaire){
+        if(questionnaire!=null){
+            ObjQuest a = new ObjQuest(questionnaire);
+            jQuestionnaires.add(a);
+        }else{         
+            jQuestionnaires.add(new javax.swing.JPanel());
+        }
+    }
+    private void showQuestionnaires(){
+        
+        ArrayList<QuestionnaireModel> quest = control.getQuestionnaires();
+        if(quest.size()>0){
+            for(QuestionnaireModel q: quest){
+                addObject(q);
+            }
+            if(quest.size()<10){
+                completeJPanel(10-quest.size());
+            }
+        }else{
+            //mostrar mensagem que nao possui nenhum
+           
+            NothingObj a = new NothingObj();
+            jQuestionnaires.add(a);
+        }
+        jQuestionnaires.revalidate();
+        jQuestionnaires.repaint();
+    }
+   
+    private void close(){
+        dispose();
+    }
+    
+    private void completeJPanel(int x) {
+        for(int i=0; i<x;i++){
+            addObject(null);
+        }
+    }
+    public void updateQuestionnaires(){ 
+        jQuestionnaires.removeAll();
+        showQuestionnaires();
+    }
+    //---------------------------------------------------------//
+    
+    
 }

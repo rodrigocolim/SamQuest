@@ -6,12 +6,15 @@
 package Control;
 
 import Model.Questionnaire.QuestionnaireModel;
+import Model.Questionnaire.TaskModel;
 import Model.User.ResearcherModel;
 import View.AddTaskView;
 import View.Objects.ObjTask;
 import View.TasksView;
 import java.awt.Component;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.YES_NO_OPTION;
 
 /**
  *
@@ -47,19 +50,34 @@ public class TasksControl {
     }
     public void advanceToNextView(){
         //chama view de pré-visualização
-        VisualizationControl.getInstance().showView(questionnaire);
+        VisualizationQuestionnaireControl.getInstance().showView(questionnaire);
         //criar questões lá no proximo controle
     }
     public void updateJPanel(){
-        TasksView.getView().showTasks();
+        TasksView.getSingletonView().showTasks();
     }
     //a partir deste questionário, a view exibirá as tarefas
     public QuestionnaireModel getQuestionnaire(){
         return this.questionnaire;
-    }
-    
+    }   
 
-    
+
+    public void delete(TaskModel task) {
+        if(confirmed()){
+            ResearcherModel.getInstance().deleteTask(questionnaire, task);
+            updateJPanel();
+        }
+    }
+
+    public void rename(TaskModel task) {
+        
+        RenameTaskControl.getInstance().showView(task);
+    }
+
+    private boolean confirmed() {
+        int op = JOptionPane.showConfirmDialog(null, "Deseja excluir esta tarefa?", null ,JOptionPane.YES_NO_OPTION);
+        return op==0;
+    }
 
     
 }
@@ -74,7 +92,7 @@ public class TasksControl {
             }        
         }
         //chama view de pré-visualização
-        VisualizationControl.getInstance().show(questionnaire);
+        VisualizationQuestionnaireControl.getInstance().show(questionnaire);
         
     }
 

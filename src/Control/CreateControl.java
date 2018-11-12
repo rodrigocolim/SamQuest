@@ -15,7 +15,6 @@ import View.CreateView;
  */
 public class CreateControl {
     private static final CreateControl singleton = new CreateControl();
-    private static CreateView createView;
     
     private CreateControl (){
         
@@ -31,6 +30,7 @@ public class CreateControl {
         MainControl.getInstance().showView();
     }
    public void advanceToNextView(QuestionnaireModel questionnaire){
+       MainControl.getInstance().close();
        TasksControl.getInstance().showView(questionnaire);
    }
     public QuestionnaireModel createQuestionnaire(String name, String org, String app) {

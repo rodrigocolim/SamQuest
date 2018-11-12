@@ -6,17 +6,24 @@
 package Model.Questionnaire;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
  * @author Sinesyo
  */
 public class AnswerModel implements Serializable{
-    private int idParticipant;
-    private QuestionnaireModel questionnaire;
-    private int[][] answers;
-
-
-
-
+    private final int idParticipant;
+    private final ArrayList<AnswerItemModel> items;
+    
+    public AnswerModel(ArrayList<AnswerItemModel> answers, int id){
+        this.items=answers;
+        this.idParticipant=id;
+    }
+    public ArrayList<AnswerItemModel> getAnswers(){
+        return items;
+    }
+    public int getIdParticipant(){
+        return this.idParticipant;
+    }
 }

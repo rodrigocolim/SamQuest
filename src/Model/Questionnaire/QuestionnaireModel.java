@@ -17,6 +17,7 @@ public class QuestionnaireModel implements Serializable{
         this.institution=org;
         this.application=app;
         this.tasks=new ArrayList<>();
+        this.results=new ArrayList<>();
     }
     
     public void generateResults(){
@@ -31,5 +32,8 @@ public class QuestionnaireModel implements Serializable{
     }
     public String getApplication(){
         return this.application;
+    }
+    public ArrayList<AnswerModel> getResults(){
+        return results;
     }
 }

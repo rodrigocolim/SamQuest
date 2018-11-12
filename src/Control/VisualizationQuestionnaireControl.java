@@ -7,31 +7,30 @@ package Control;
 
 import Model.Questionnaire.TaskModel;
 import Model.Questionnaire.QuestionnaireModel;
+import Model.User.ResearcherModel;
 import Utilities.PDFManipulator;
-import View.VisualizationView;
+import View.VisualizationQuestionnaireView;
 
 /**
  *
  * @author rodri
  */
-public class VisualizationControl {
-    private static VisualizationControl singleton = new VisualizationControl();
+public class VisualizationQuestionnaireControl {
+    private static VisualizationQuestionnaireControl singleton = new VisualizationQuestionnaireControl();
     private QuestionnaireModel questionnaire;
     
-    private VisualizationControl(){
+    private VisualizationQuestionnaireControl(){
         
     }
     
-    public static VisualizationControl getInstance(){
+    public static VisualizationQuestionnaireControl getInstance(){
         return singleton;
     }
 
     void showView(QuestionnaireModel questionnaire) {
         this.questionnaire=questionnaire;
-        //o questionário possui tarefas apenas com nomes
-        //precisa gerar os prodcut dimenions
-        //e então tranformar em pdf e mostrar
-        VisualizationView.main(null);
+        PDFManipulator.generatePDFQeestionnaire(questionnaire, getPath());
+        VisualizationQuestionnaireView.main(null);
     }
     public void back(){
         TasksControl.getInstance().showView(questionnaire);
@@ -40,10 +39,14 @@ public class VisualizationControl {
         MainControl.getInstance().showView();
     }
     public void conclude() {
-        MainControl.getInstance().showView(questionnaire);
+        MainControl.getInstance().showView();
     }
 
     public void save() {
-        PDFManipulator.generatePDF(questionnaire, "Questionnaires");
+        ResearcherModel.getInstance().saveQuestPDF(questionnaire);
+    }
+
+    public String getPath() {
+        return "Pre_Ready/"+questionnaire.getApplication()+".pdf";
     }
 }

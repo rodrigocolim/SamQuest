@@ -57,5 +57,9 @@ public class TaskModel implements Serializable{
     public DimensionProductModel[] getDimensions() {
         return dimensions;
     }
+
+    public void setName(String name) {
+        this.name=name;
+    }
     
 }   

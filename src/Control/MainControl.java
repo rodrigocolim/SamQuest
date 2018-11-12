@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * @author rodri
  */
 public class MainControl {
-    private static MainControl singleton = new MainControl();
+    private static final MainControl singleton = new MainControl();
     
     
     private MainControl(){
@@ -31,10 +31,7 @@ public class MainControl {
     }
     public void showView(){
         MainView.getViewSingleton().setVisible(true);
-    }
-    public void showView(QuestionnaireModel questionnaire){
-        MainView.getViewSingleton().setVisible(true);
-        MainView.getViewSingleton().updateQuestionnaires(questionnaire);
+        MainView.getViewSingleton().updateQuestionnaires();
     }
     public void advanceToNextView() {
         CreateControl.getInstance().showView();
@@ -42,5 +39,10 @@ public class MainControl {
     public ArrayList<QuestionnaireModel> getQuestionnaires(){
         return ResearcherModel.getInstance().getQuestionnaires();
     }
-    //-----------------------------------------------//
+    
+//-----------------------------------------------//
+
+    public void close() {
+        MainView.getViewSingleton().setVisible(false);
+    }
 }
