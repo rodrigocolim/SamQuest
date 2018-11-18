@@ -5,12 +5,13 @@
  */
 package View;
 
-import View.Objects.NothingObj;
+import View.Objects.EmptyPanel;
 import Control.MainControl;
 import Model.Questionnaire.QuestionnaireModel;
 import View.Objects.ObjQuest;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -19,20 +20,23 @@ import javax.swing.JPanel;
  * @author rodri
  */
 public class MainView extends javax.swing.JFrame {
+
     private final MainControl control = MainControl.getInstance();
     private static final MainView viewSingleton = new MainView();
+    private final int columns = 5;
+
     /**
      * Creates new form NewJFrame
      */
     private MainView() {
         initComponents();
         showQuestionnaires();
-     
     }
-    public static MainView getViewSingleton(){
+
+    public static MainView getInstance() {
         return viewSingleton;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,8 +53,8 @@ public class MainView extends javax.swing.JFrame {
         jButtonCreate = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("TUXE");
         setMinimumSize(new java.awt.Dimension(610, 380));
         setResizable(false);
 
@@ -64,7 +68,7 @@ public class MainView extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
+            .addGap(0, 610, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -103,25 +107,24 @@ public class MainView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButtonCreate, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonCreate, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
+                .addGap(5, 5, 5)
                 .addComponent(jLabel2)
                 .addGap(1, 1, 1)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
                 .addComponent(jButtonCreate)
-                .addContainerGap())
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -130,10 +133,9 @@ public class MainView extends javax.swing.JFrame {
     private void jButtonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateActionPerformed
         // TODO add your handling code here:
         // control é um objeto da classse MainControl que controla essa view
+        //o metodo chamado vai dar inicio ao processo de criar um questionnaires
         setEnabled(false);
-        //o metodo chamado vai dar inicio ao processo de criar um quest
-        control.advanceToNextView();
-        
+        control.startCreation();
     }//GEN-LAST:event_jButtonCreateActionPerformed
 
     /**
@@ -141,34 +143,18 @@ public class MainView extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainView().setVisible(true);
+                viewSingleton.defineCloseOperation();
+                viewSingleton.setVisible(true);
+
             }
-        });
+        ;
+    }
+    );
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -180,49 +166,81 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    //---------------------------------------------//
-    private void addObject(QuestionnaireModel questionnaire){
-        if(questionnaire!=null){
-            ObjQuest a = new ObjQuest(questionnaire);
-            jQuestionnaires.add(a);
-        }else{         
-            jQuestionnaires.add(new javax.swing.JPanel());
+    //-------------------------------------------------------------------------//
+    
+    private void defineCloseOperation() {
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent evt) {
+                Initializer.Main.closePogram();
+            }
+        });
+    }
+    
+    private void completeJPanel(JPanel panel, int x) {
+        for (int i = 0; i < x; i++) {
+            panel.add(new javax.swing.JPanel());
         }
     }
-    private void showQuestionnaires(){
-        
-        ArrayList<QuestionnaireModel> quest = control.getQuestionnaires();
-        if(quest.size()>0){
-            for(QuestionnaireModel q: quest){
-                addObject(q);
-            }
-            if(quest.size()<10){
-                completeJPanel(10-quest.size());
-            }
-        }else{
-            //mostrar mensagem que nao possui nenhum
-           
-            NothingObj a = new NothingObj();
-            jQuestionnaires.add(a);
+
+    private void setLayout(JPanel panel, int countObjects) {
+        int lines = getLines(countObjects, columns);
+        panel.setLayout(new GridLayout(lines, columns, 1, 1));
+
+    }
+
+    private int getLines(int total, int columns) {
+        int lines = (int) Math.ceil((double) total / (double) columns);
+        if (total > 5) {
+            return lines;
+        } else {
+            return lines + 1;
+        }
+    }
+
+    private void showEmptyMessage(JPanel jQuestionnaires) {
+        EmptyPanel a = new EmptyPanel();
+        jQuestionnaires.setLayout(new GridLayout(1, 1));
+        jQuestionnaires.add(a);
+    }
+
+    private void addQuestionnaireInJPanel(JPanel panel, QuestionnaireModel questionnaire) {
+        if (questionnaire != null) {
+            ObjQuest a = new ObjQuest(questionnaire);
+            panel.add(a);
+        }
+    }
+
+    private void addAllQuestionnairesInJPanel(JPanel panel, ArrayList<QuestionnaireModel> questionnaires) {
+        for (QuestionnaireModel q : questionnaires) {
+            addQuestionnaireInJPanel(panel, q);
+        }
+        int lines = getLines(questionnaires.size(), columns);
+        if (questionnaires.size() < lines * columns) {
+            completeJPanel(panel, (lines * columns) - questionnaires.size());
+        }
+    }
+
+    private void showQuestionnaires() {
+        ArrayList<QuestionnaireModel> questionnaires = control.getQuestionnaires();
+        if (questionnaires.size() > 0) {
+            setLayout(jQuestionnaires, questionnaires.size());
+            addAllQuestionnairesInJPanel(jQuestionnaires, questionnaires);
+        } else {
+            showEmptyMessage(jQuestionnaires);
         }
         jQuestionnaires.revalidate();
         jQuestionnaires.repaint();
     }
-   
-    private void close(){
-        dispose();
-    }
-    
-    private void completeJPanel(int x) {
-        for(int i=0; i<x;i++){
-            addObject(null);
-        }
-    }
-    public void updateQuestionnaires(){ 
+    //-------------------------------------------------------------------------//
+
+    public void updateQuestionnaires() {
         jQuestionnaires.removeAll();
         showQuestionnaires();
     }
-    //---------------------------------------------------------//
-    
-    
+
+    public void close() {
+        dispose();
+    }
+    //--------------------------------------------------------------------------//
+
 }

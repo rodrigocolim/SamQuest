@@ -22,14 +22,18 @@ public class RenameTaskControl {
         return singleton;
     }
 
-    public void rename(String text) {
+    public void renameTask(String text) {
         ResearcherModel.getInstance().renameTask(task, text);
-        TasksControl.getInstance().updateJPanel();
+        EditQuestionnaireControl.getInstance().updateView();
     }
 
     void showView(TaskModel task) {
         RenameTaskView.main(null, task.getName());
         this.task=task;
+    }
+
+    public void cancelRenaming() {
+        EditQuestionnaireControl.getInstance().enableView();
     }
     
 }

@@ -43,17 +43,22 @@ public class ObjDomainScale extends javax.swing.JPanel {
         jRadioButton8 = new javax.swing.JRadioButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/domain.png"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
         buttonGroupDomain.add(jRadioButton7);
         jRadioButton7.setMnemonic('7');
+        add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, -1, -1));
 
         buttonGroupDomain.add(jRadioButton6);
         jRadioButton6.setMnemonic('6');
+        add(jRadioButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, -1, -1));
 
         buttonGroupDomain.add(jRadioButton5);
         jRadioButton5.setMnemonic('5');
+        add(jRadioButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, -1, -1));
 
         buttonGroupDomain.add(jRadioButton2);
         jRadioButton2.setMnemonic('2');
@@ -62,9 +67,11 @@ public class ObjDomainScale extends javax.swing.JPanel {
                 jRadioButton2ActionPerformed(evt);
             }
         });
+        add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, -1, -1));
 
         buttonGroupDomain.add(jRadioButton9);
         jRadioButton9.setMnemonic('9');
+        add(jRadioButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, -1, -1));
 
         buttonGroupDomain.add(jRadioButton1);
         jRadioButton1.setMnemonic('1');
@@ -73,9 +80,11 @@ public class ObjDomainScale extends javax.swing.JPanel {
                 jRadioButton1ActionPerformed(evt);
             }
         });
+        add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
 
         buttonGroupDomain.add(jRadioButton3);
         jRadioButton3.setMnemonic('3');
+        add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, -1, -1));
 
         buttonGroupDomain.add(jRadioButton4);
         jRadioButton4.setMnemonic('4');
@@ -84,55 +93,11 @@ public class ObjDomainScale extends javax.swing.JPanel {
                 jRadioButton4ActionPerformed(evt);
             }
         });
+        add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, -1, -1));
 
         buttonGroupDomain.add(jRadioButton8);
         jRadioButton8.setMnemonic('8');
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addComponent(jRadioButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton4)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton5)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton6)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton7)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton8)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jRadioButton1)
-                        .addComponent(jRadioButton4, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(jRadioButton8)
-                    .addComponent(jRadioButton7)
-                    .addComponent(jRadioButton6)
-                    .addComponent(jRadioButton5)
-                    .addComponent(jRadioButton9)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton2))
-                .addContainerGap(8, Short.MAX_VALUE))
-        );
+        add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed

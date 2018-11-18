@@ -6,8 +6,8 @@
 package View;
 
 import Control.VisualizationQuestionnaireControl;
-import Utilities.PDFManipulator;
-import javax.swing.JPanel;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import org.icepdf.ri.common.ComponentKeyBinding;
 import org.icepdf.ri.common.SwingController;
 import org.icepdf.ri.common.SwingViewBuilder;
@@ -19,13 +19,13 @@ import org.icepdf.ri.common.SwingViewBuilder;
 public class VisualizationQuestionnaireView extends javax.swing.JFrame {
 
     private VisualizationQuestionnaireControl control = VisualizationQuestionnaireControl.getInstance();
+    private static VisualizationQuestionnaireView viewSingleton = new VisualizationQuestionnaireView();
 
     /**
      * Creates new form VisualizationView
      */
     public VisualizationQuestionnaireView() {
         initComponents();
-        openPDF(VisualizationQuestionnaireControl.getInstance().getPath());
     }
 
     /**
@@ -39,14 +39,13 @@ public class VisualizationQuestionnaireView extends javax.swing.JFrame {
 
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jButtonCancel = new javax.swing.JButton();
         jButtonBack = new javax.swing.JButton();
         jButtonConclude = new javax.swing.JButton();
         jSavePDF = new javax.swing.JButton();
         jScrollPanePDF = new javax.swing.JScrollPane();
         jPanelPDF = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
         jPanel3.setBackground(new java.awt.Color(33, 177, 192));
@@ -76,15 +75,6 @@ public class VisualizationQuestionnaireView extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jButtonCancel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonCancel.setText("Cancelar");
-        jButtonCancel.setToolTipText("");
-        jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelActionPerformed(evt);
-            }
-        });
-
         jButtonBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonBack.setText("Voltar");
         jButtonBack.setToolTipText("");
@@ -103,6 +93,7 @@ public class VisualizationQuestionnaireView extends javax.swing.JFrame {
             }
         });
 
+        jSavePDF.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jSavePDF.setText("Salvar PDF");
         jSavePDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,15 +122,13 @@ public class VisualizationQuestionnaireView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jButtonCancel)
+                .addGap(50, 50, 50)
+                .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSavePDF)
-                .addGap(192, 192, 192)
-                .addComponent(jButtonBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonConclude)
-                .addGap(40, 40, 40))
+                .addComponent(jSavePDF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(235, 235, 235)
+                .addComponent(jButtonConclude, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
             .addComponent(jScrollPanePDF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -147,14 +136,13 @@ public class VisualizationQuestionnaireView extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
+                .addContainerGap(78, Short.MAX_VALUE)
                 .addComponent(jScrollPanePDF, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonConclude)
                     .addComponent(jSavePDF)
-                    .addComponent(jButtonBack)
-                    .addComponent(jButtonCancel))
+                    .addComponent(jButtonBack))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -169,24 +157,18 @@ public class VisualizationQuestionnaireView extends javax.swing.JFrame {
     private void jButtonConcludeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConcludeActionPerformed
         // TODO add your handling code here:
         close();
-        control.conclude();
+        control.concludeEdition();
     }//GEN-LAST:event_jButtonConcludeActionPerformed
-
-    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-        // TODO add your handling code here:
-        close();
-        control.cancel();
-    }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         // TODO add your handling code here:
         close();
-        control.back();
+        control.backToEditQuestionnaireView();
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jSavePDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSavePDFActionPerformed
         // TODO add your handling code here:
-        control.save();
+        control.savePDFQuestionnaire();
     }//GEN-LAST:event_jSavePDFActionPerformed
 
     /**
@@ -220,14 +202,15 @@ public class VisualizationQuestionnaireView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VisualizationQuestionnaireView().setVisible(true);
+                viewSingleton.defineCloseOperation();
+                viewSingleton.setVisible(true);
+                viewSingleton.openPDF(VisualizationQuestionnaireControl.getInstance().getPath());
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBack;
-    private javax.swing.JButton jButtonCancel;
     private javax.swing.JButton jButtonConclude;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel3;
@@ -248,15 +231,21 @@ public class VisualizationQuestionnaireView extends javax.swing.JFrame {
             jPanelPDF = factry.buildViewerPanel();
             ComponentKeyBinding.install(contrl, jPanelPDF);
             contrl.getDocumentViewController().setAnnotationCallback(
-                new org.icepdf.ri.common.MyAnnotationCallback(
-                    contrl.getDocumentViewController()));
-            System.out.println("1");
+                    new org.icepdf.ri.common.MyAnnotationCallback(
+                            contrl.getDocumentViewController()));
             contrl.openDocument(file);
-            System.out.println("2");
             jScrollPanePDF.setViewportView(jPanelPDF);
         } catch (Exception ex) {
-            System.out.println("deu ruim "+ex.getMessage());
+            System.out.println("deu ruim " + ex.getMessage());
         }
+    }
+
+    private void defineCloseOperation() {
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent evt) {
+                Initializer.Main.closePogram();
+            }
+        });
     }
 
 }

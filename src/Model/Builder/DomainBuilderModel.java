@@ -5,11 +5,6 @@
  */
 package Model.Builder;
 
-import com.itextpdf.text.BadElementException;
-import com.itextpdf.text.Image;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

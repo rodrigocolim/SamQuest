@@ -9,11 +9,14 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,7 +30,7 @@ public class ObjectManipulator {
 
     }
 
-    public static ObjectManipulator getObjectManipulator() {
+    public static ObjectManipulator getInstance() {
         return objectManipulator;
     }
 
@@ -56,7 +59,30 @@ public class ObjectManipulator {
 
     }
 
-    public void saveObject(String path, byte[] object) {
+    public void saveObjectInPersistence(String path, Object object) {
+        try {
+            FileOutputStream arq = new FileOutputStream(path);
+            ObjectOutputStream obj = new ObjectOutputStream(arq);
+            obj.writeObject(object);
+            obj.flush();
+            //JOptionPane.showMessageDialog(null, "gravado com sucesso");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Deu errado: "+e.getMessage());
+        }
+    }
+
+    public Object getObjectFromPersistence(String path) {
+        try {
+            FileInputStream arq = new FileInputStream(path);
+            ObjectInputStream obj = new ObjectInputStream(arq);
+            return (Object) obj.readObject();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Deu errado: "+e.getMessage());
+        }
+        return null;
+    }
+
+    private void saveObject(String path, byte[] object) {
         try {
             BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path, true));
             buffWrite.append(new String(object));
@@ -66,7 +92,7 @@ public class ObjectManipulator {
         }
     }
 
-    public byte[] getObject(String path) throws IOException {
+    private byte[] getObject(String path) throws IOException {
         BufferedReader buffRead = new BufferedReader(new FileReader(path));
         ByteArrayOutputStream object = new ByteArrayOutputStream();
         return object.toByteArray();

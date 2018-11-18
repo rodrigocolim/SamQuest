@@ -6,6 +6,8 @@
 package View;
 
 import Control.RenameTaskControl;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  *
@@ -13,13 +15,16 @@ import Control.RenameTaskControl;
  */
 public class RenameTaskView extends javax.swing.JFrame {
 
+    private RenameTaskControl control = RenameTaskControl.getInstance();
+
     /**
      * Creates new form RenameTaskView
+     *
      * @param title of the window
      */
-    public RenameTaskView(String title) {
-        this.setTitle(title);
+    public RenameTaskView(String task) {
         initComponents();
+        jNameField.setText(task);
     }
 
     /**
@@ -36,9 +41,11 @@ public class RenameTaskView extends javax.swing.JFrame {
         jRename = new javax.swing.JButton();
         jCancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Renomear Tarefa");
+        setResizable(false);
 
-        label1.setText("Renomear:");
+        label1.setText("Novo nome:");
 
         jNameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -46,6 +53,7 @@ public class RenameTaskView extends javax.swing.JFrame {
             }
         });
 
+        jRename.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRename.setText("Renomear");
         jRename.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,6 +61,7 @@ public class RenameTaskView extends javax.swing.JFrame {
             }
         });
 
+        jCancel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCancel.setText("Cancelar");
         jCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,14 +74,14 @@ public class RenameTaskView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(114, Short.MAX_VALUE)
+                .addContainerGap(110, Short.MAX_VALUE)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(114, 114, 114))
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRename))
                     .addComponent(jNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -102,12 +111,13 @@ public class RenameTaskView extends javax.swing.JFrame {
     private void jCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCancelActionPerformed
         // TODO add your handling code here:
         close();
+        control.cancelRenaming();
     }//GEN-LAST:event_jCancelActionPerformed
 
     private void jRenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRenameActionPerformed
         // TODO add your handling code here:
         close();
-        RenameTaskControl.getInstance().rename(jNameField.getText());
+        control.renameTask(jNameField.getText());
     }//GEN-LAST:event_jRenameActionPerformed
 
     /**
@@ -140,7 +150,9 @@ public class RenameTaskView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RenameTaskView(title).setVisible(true);
+                RenameTaskView view = new RenameTaskView(title);
+                view.defineCloseOperation();
+                view.setVisible(true);
             }
         });
     }
@@ -154,5 +166,14 @@ public class RenameTaskView extends javax.swing.JFrame {
 
     private void close() {
         dispose();
+    }
+
+    private void defineCloseOperation() {
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent evt) {
+                close();
+                control.cancelRenaming();
+            }
+        });
     }
 }

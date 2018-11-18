@@ -5,9 +5,10 @@
  */
 package View.Objects;
 
+import Control.InsertResponseIdControl;
 import Control.MainControl;
 import Control.ResponseControl;
-import Control.TasksControl;
+import Control.EditQuestionnaireControl;
 import Model.Questionnaire.QuestionnaireModel;
 import Model.User.ResearcherModel;
 import com.itextpdf.text.DocumentException;
@@ -18,15 +19,24 @@ import javax.swing.JOptionPane;
  * @author rodri
  */
 public class ObjQuest extends javax.swing.JPanel {
+
     private final QuestionnaireModel questionnaire;
+
     /**
      * Creates new form ObjQuest2
+     *
      * @param questionnaire
      */
     public ObjQuest(QuestionnaireModel questionnaire) {
         initComponents();
-        this.questionnaire=questionnaire;
-        projectName.setText(questionnaire.getProjectName());
+        this.questionnaire = questionnaire;
+        jApplicationName.setText(questionnaire.getApplication());
+        if (questionnaire.getTasks().isEmpty()) {
+            jMenuReply.setEnabled(false);
+        }
+        if (questionnaire.getResults().isEmpty()) {
+            jMenuResults.setEnabled(false);
+        }
     }
 
     /**
@@ -43,8 +53,9 @@ public class ObjQuest extends javax.swing.JPanel {
         jMenuReply = new javax.swing.JMenuItem();
         jMenuResults = new javax.swing.JMenuItem();
         jSavePDFItem = new javax.swing.JMenuItem();
+        jMenuDelete = new javax.swing.JMenuItem();
         jLabel2 = new javax.swing.JLabel();
-        projectName = new java.awt.Label();
+        jApplicationName = new java.awt.Label();
 
         jMenuEdit.setText("Editar");
         jMenuEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -78,6 +89,14 @@ public class ObjQuest extends javax.swing.JPanel {
         });
         jPopupMenu1.add(jSavePDFItem);
 
+        jMenuDelete.setText("Excluir");
+        jMenuDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuDeleteActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuDelete);
+
         setBackground(new java.awt.Color(222, 222, 222));
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setMaximumSize(new java.awt.Dimension(90, 100));
@@ -93,27 +112,25 @@ public class ObjQuest extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icon_questionnaire_22.png"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 2, 70, 60));
 
-        projectName.setAlignment(java.awt.Label.CENTER);
-        projectName.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        projectName.setText("label2");
-        add(projectName, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 68, 20));
+        jApplicationName.setAlignment(java.awt.Label.CENTER);
+        jApplicationName.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jApplicationName.setText("label2");
+        add(jApplicationName, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 68, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        System.out.println("clicou");
         jPopupMenu1.show(this, 50, 50);
     }//GEN-LAST:event_formMouseClicked
 
     private void jSavePDFItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSavePDFItemActionPerformed
         // TODO add your handling code here:
         ResearcherModel.getInstance().saveQuestPDF(questionnaire);
-        JOptionPane.showMessageDialog(null, "Questionário salvo na pasta Questionnaires!", null, JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jSavePDFItemActionPerformed
 
     private void jMenuEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEditActionPerformed
         // TODO add your handling code here:
-        MainControl.getInstance().close();
-        TasksControl.getInstance().showView(questionnaire);
+        MainControl.getInstance().closeMainView();
+        EditQuestionnaireControl.getInstance().showView(questionnaire);
     }//GEN-LAST:event_jMenuEditActionPerformed
 
     private void jMenuResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuResultsActionPerformed
@@ -127,18 +144,25 @@ public class ObjQuest extends javax.swing.JPanel {
 
     private void jMenuReplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuReplyActionPerformed
         // TODO add your handling code here:
-         System.out.println("clicou em responder/MouseClicked");
-        ResponseControl.getInstance().showView(questionnaire);
+        MainControl.getInstance().disableMainView();
+        InsertResponseIdControl.getInstance().showView(questionnaire);
+//ResponseControl.getInstance().showView(questionnaire);
     }//GEN-LAST:event_jMenuReplyActionPerformed
+
+    private void jMenuDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuDeleteActionPerformed
+        // TODO add your handling code here:
+        MainControl.getInstance().delete(questionnaire);
+    }//GEN-LAST:event_jMenuDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Label jApplicationName;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenuItem jMenuDelete;
     private javax.swing.JMenuItem jMenuEdit;
     private javax.swing.JMenuItem jMenuReply;
     private javax.swing.JMenuItem jMenuResults;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JMenuItem jSavePDFItem;
-    private java.awt.Label projectName;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,11 +5,13 @@
  */
 package Model.Questionnaire;
 
+import java.io.Serializable;
+
 /**
  *
  * @author rodri
  */
-public class AnswerItemModel {
+public class AnswerItemModel implements Serializable{
     String taskName;
     int domainValue;
     int motivationValue;

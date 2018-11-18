@@ -12,6 +12,8 @@ import Model.Questionnaire.TaskModel;
 import View.Objects.ObjDomainScale;
 import View.Objects.ObjMotivationScale;
 import View.Objects.ObjSatisfactionScale;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 /**
@@ -19,26 +21,19 @@ import java.util.ArrayList;
  * @author rodri
  */
 public class ResponseView extends javax.swing.JFrame {
-    private final ResponseControl control = ResponseControl.getInstance();
-   /* private final ArrayList<TaskModel> tasks;
-    private final String software;
-    private final int total;
-    private final QuestionnaireModel questionnaire; */  
-   
- 
-    
- 
-    /**
-     * Creates new form ResponseView
-     * @param questionnaire
-     */
-   
-    private ResponseView(QuestionnaireModel questionnaire) {
+
+    private static final ResponseControl control = ResponseControl.getInstance();
+    private static final ResponseView viewSingleton = new ResponseView();
+
+    private ResponseView() {
         initComponents();
-        initializeObjects(questionnaire);
+        //initializeObjects(questionnaire);
     }
-    
-    
+
+    public static ResponseView getInstance() {
+        return viewSingleton;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,22 +45,24 @@ public class ResponseView extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jButtonAdvance = new javax.swing.JButton();
+        jButtonBack = new javax.swing.JButton();
+        jButtonCancel = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         label2 = new java.awt.Label();
         jTotalNumber = new javax.swing.JLabel();
         jTaskName = new javax.swing.JLabel();
         label3 = new java.awt.Label();
         jTask = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanelScales = new javax.swing.JPanel();
-        jSoftwareName = new javax.swing.JLabel();
         label1 = new java.awt.Label();
-        jButtonAdvance = new javax.swing.JButton();
-        jButtonBack = new javax.swing.JButton();
-        jButtonCancel = new javax.swing.JButton();
+        jSoftwareName = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jScalesPanel = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("TUXE");
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(33, 177, 192));
 
@@ -80,9 +77,9 @@ public class ResponseView extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 257, Short.MAX_VALUE)
+                    .addGap(0, 261, Short.MAX_VALUE)
                     .addComponent(jLabel4)
-                    .addGap(0, 262, Short.MAX_VALUE)))
+                    .addGap(0, 265, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,90 +91,27 @@ public class ResponseView extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        label2.setText("Tarefa:");
-
-        jTotalNumber.setText("jT");
-
-        jTaskName.setText("jLabel2");
-
-        label3.setText("de");
-
-        jTask.setText("n");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTaskName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 321, Short.MAX_VALUE)
-                .addComponent(jTask, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTotalNumber)
-                .addGap(26, 26, 26))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTotalNumber)
-                        .addComponent(jTaskName)
-                        .addComponent(jTask))
-                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        jPanelScales.setLayout(new java.awt.GridLayout(3, 1));
-        jScrollPane1.setViewportView(jPanelScales);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addGap(0, 7, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jSoftwareName.setText("jLabel1");
-
-        label1.setText("Software:");
-
+        jButtonAdvance.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonAdvance.setText("Avançar");
         jButtonAdvance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAdvanceActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonAdvance, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, 100, -1));
 
+        jButtonBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonBack.setText("Voltar");
         jButtonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBackActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 370, 100, -1));
 
+        jButtonCancel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCancel.setText("Cancelar");
         jButtonCancel.setToolTipText("");
         jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -185,50 +119,87 @@ public class ResponseView extends javax.swing.JFrame {
                 jButtonCancelActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 100, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(246, 246, 246)
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSoftwareName))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonCancel)
-                                .addGap(317, 317, 317)
-                                .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonAdvance, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(28, 28, 28))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jSoftwareName, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        label2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        label2.setText("Tarefa:");
+
+        jTotalNumber.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTotalNumber.setText("jT");
+
+        jTaskName.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTaskName.setText("jLabel2");
+
+        label3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        label3.setText("de");
+
+        jTask.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTask.setText("n");
+
+        label1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        label1.setText("Software:");
+
+        jSoftwareName.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jSoftwareName.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAdvance)
-                    .addComponent(jButtonBack)
-                    .addComponent(jButtonCancel))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addComponent(jSoftwareName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTaskName)
+                .addGap(152, 152, 152)
+                .addComponent(jTask, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTotalNumber)
+                .addGap(19, 19, 19))
         );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTotalNumber)
+                        .addComponent(jTask))
+                    .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jSoftwareName, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jTaskName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(0, 10, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 570, -1));
+
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        javax.swing.GroupLayout jScalesPanelLayout = new javax.swing.GroupLayout(jScalesPanel);
+        jScalesPanel.setLayout(jScalesPanelLayout);
+        jScalesPanelLayout.setHorizontalGroup(
+            jScalesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 551, Short.MAX_VALUE)
+        );
+        jScalesPanelLayout.setVerticalGroup(
+            jScalesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 237, Short.MAX_VALUE)
+        );
+
+        jScrollPane2.setViewportView(jScalesPanel);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 570, 230));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -252,19 +223,21 @@ public class ResponseView extends javax.swing.JFrame {
      * @param args the command line arguments
      * @param quest the questionnaire that will be shown
      * @return return new view to control keep it
-
+     *
      */
-    public static ResponseView main(String args[], QuestionnaireModel quest) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-       ResponseView view = new ResponseView(quest);
-        /* Create and display the form */
+
+ /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                view.setVisible(true);
+                viewSingleton.defineCloseOperation();
+                viewSingleton.setVisible(true);
+                viewSingleton.initializeObjects(control.getQuestionnaire());
             }
         });
-        return view;
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -273,10 +246,9 @@ public class ResponseView extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCancel;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanelScales;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jScalesPanel;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel jSoftwareName;
     private javax.swing.JLabel jTask;
     private javax.swing.JLabel jTaskName;
@@ -286,73 +258,87 @@ public class ResponseView extends javax.swing.JFrame {
     private java.awt.Label label3;
     // End of variables declaration//GEN-END:variables
 
-      private void initializeObjects(QuestionnaireModel questionnaire) {
+    private void initializeObjects(QuestionnaireModel questionnaire) {
         jSoftwareName.setText(questionnaire.getApplication());
-        jTotalNumber.setText(""+questionnaire.getTasks().size());
+        jTotalNumber.setText("" + questionnaire.getTasks().size());
         setTask(questionnaire.getTasks().get(0).getName(), 1);
         setScales();
         jButtonBack.enable(false);
     }
-    
+
     private void setScales() {
-        jPanelScales.setLayout(new java.awt.GridLayout(3, 1,1,1));
-        jPanelScales.add(new ObjDomainScale());
-        jPanelScales.add(new ObjMotivationScale());
-        jPanelScales.add(new ObjSatisfactionScale());
-        jPanelScales.revalidate();
-        jPanelScales.repaint();       
+        jScalesPanel.setLayout(new java.awt.GridLayout(3, 1, 1, 1));
+        jScalesPanel.add(new ObjDomainScale());
+        jScalesPanel.add(new ObjMotivationScale());
+        jScalesPanel.add(new ObjSatisfactionScale());
+        jScalesPanel.revalidate();
+        jScalesPanel.repaint();
     }
+
     private void setScales(int dV, int mV, int sV) {
-        jPanelScales.setLayout(new java.awt.GridLayout(3, 1,1,1));
-        jPanelScales.add(new ObjDomainScale());
-        jPanelScales.add(new ObjMotivationScale());
-        jPanelScales.add(new ObjSatisfactionScale(sV));
-        jPanelScales.revalidate();
-        jPanelScales.repaint();       
+        //este métod foi criado para restaura a resposta dada a uma tarefa
+        //quando o usuário escolhe rever uma resposta, mas falta implementar o 
+        //constrturar os outros objetos escalas além do satisfação.
+        jScalesPanel.setLayout(new java.awt.GridLayout(3, 1, 1, 1));
+        jScalesPanel.add(new ObjDomainScale());
+        jScalesPanel.add(new ObjMotivationScale());
+        jScalesPanel.add(new ObjSatisfactionScale(sV));
+        jScalesPanel.revalidate();
+        jScalesPanel.repaint();
     }
-   
+
     private void setTask(String name, int number) {
-    //    System.out.println("name: "+name+" "+number+"/"+total);
+        //    System.out.println("name: "+name+" "+number+"/"+total);
         jTaskName.setText(name);
-        jTask.setText(""+number);    
+        jTask.setText("" + number);
     }
-   
-    private void restore(AnswerItemModel item){
+
+    private void restore(AnswerItemModel item) {
         System.out.println(item.getDomainValue());
         System.out.println(item.getMotivationValue());
         System.out.println(item.getSatisfactionValue());
-        ((ObjDomainScale)jPanelScales.getComponent(0)).setOption(item.getDomainValue());
-        ((ObjMotivationScale)jPanelScales.getComponent(1)).setOption(item.getMotivationValue());
-        ((ObjSatisfactionScale)jPanelScales.getComponent(2)).setOption(item.getSatisfactionValue());
+        ((ObjDomainScale) jScalesPanel.getComponent(0)).setOption(item.getDomainValue());
+        ((ObjMotivationScale) jScalesPanel.getComponent(1)).setOption(item.getMotivationValue());
+        ((ObjSatisfactionScale) jScalesPanel.getComponent(2)).setOption(item.getSatisfactionValue());
     }
-    
+     private void defineCloseOperation() {
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent evt) {
+                Initializer.Main.closePogram();
+            }
+        });
+    }
+
     public void updateView(String taskName, int taskNumber) {
-        if(taskNumber==1)
+        if (taskNumber == 1) {
             jButtonBack.enable(false);
-        jPanelScales.removeAll();
+        }
+        jScalesPanel.removeAll();
         setTask(taskName, taskNumber);
+        //if()
         setScales();
     }
-   public ArrayList<TaskModel> getTasks(){
-       return ResponseControl.getInstance().getQuestionnaire().getTasks();//this.tasks;
-   }
+
+    public ArrayList<TaskModel> getTasks() {
+        return ResponseControl.getInstance().getQuestionnaire().getTasks();//this.tasks;
+    }
 
     public boolean isAnswered() {
-        return ((ObjDomainScale) jPanelScales.getComponent(0)).isAnswered() && 
-                ((ObjMotivationScale)jPanelScales.getComponent(1)).isAnswered() &&
-                ((ObjSatisfactionScale)jPanelScales.getComponent(2)).isAnswered();
+        return ((ObjDomainScale) jScalesPanel.getComponent(0)).isAnswered()
+                && ((ObjMotivationScale) jScalesPanel.getComponent(1)).isAnswered()
+                && ((ObjSatisfactionScale) jScalesPanel.getComponent(2)).isAnswered();
     }
-    
-    public AnswerItemModel getAnswers(){
+
+    public AnswerItemModel getAnswers() {
         String taskName = jTaskName.getText();
-        int dV=((ObjDomainScale) jPanelScales.getComponent(0)).getAnswer();
-        int mV=((ObjMotivationScale)jPanelScales.getComponent(1)).getAnswer();
-        int sV=((ObjSatisfactionScale)jPanelScales.getComponent(2)).getAnswer();
+        int dV = ((ObjDomainScale) jScalesPanel.getComponent(0)).getAnswer();
+        int mV = ((ObjMotivationScale) jScalesPanel.getComponent(1)).getAnswer();
+        int sV = ((ObjSatisfactionScale) jScalesPanel.getComponent(2)).getAnswer();
         System.out.println(taskName);
-        System.out.println(dV+" "+mV+" "+sV);
+        System.out.println(dV + " " + mV + " " + sV);
         return new AnswerItemModel(taskName, dV, mV, sV);
     }
-    
+
     public QuestionnaireModel getQuestionnaire() {
         return ResponseControl.getInstance().getQuestionnaire();//this.questionnaire;
     }
@@ -360,9 +346,4 @@ public class ResponseView extends javax.swing.JFrame {
     public void close() {
         this.dispose();
     }
-
-  
-
-  
-  
 }

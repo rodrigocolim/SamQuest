@@ -47,17 +47,22 @@ public class ObjSatisfactionScale extends javax.swing.JPanel{
         jRadioButton8 = new javax.swing.JRadioButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/satisfaction.png"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 21, -1, -1));
 
         buttonGroupSatisfaction.add(jRadioButton7);
         jRadioButton7.setMnemonic('7');
+        add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 124, -1, -1));
 
         buttonGroupSatisfaction.add(jRadioButton6);
         jRadioButton6.setMnemonic('6');
+        add(jRadioButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 124, -1, -1));
 
         buttonGroupSatisfaction.add(jRadioButton5);
         jRadioButton5.setMnemonic('5');
+        add(jRadioButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 124, -1, -1));
 
         buttonGroupSatisfaction.add(jRadioButton2);
         jRadioButton2.setMnemonic('2');
@@ -66,9 +71,11 @@ public class ObjSatisfactionScale extends javax.swing.JPanel{
                 jRadioButton2ActionPerformed(evt);
             }
         });
+        add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 124, -1, -1));
 
         buttonGroupSatisfaction.add(jRadioButton9);
         jRadioButton9.setMnemonic('9');
+        add(jRadioButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 124, -1, -1));
 
         buttonGroupSatisfaction.add(jRadioButton1);
         jRadioButton1.setMnemonic('1');
@@ -77,9 +84,11 @@ public class ObjSatisfactionScale extends javax.swing.JPanel{
                 jRadioButton1ActionPerformed(evt);
             }
         });
+        add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 124, -1, -1));
 
         buttonGroupSatisfaction.add(jRadioButton3);
         jRadioButton3.setMnemonic('3');
+        add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 124, -1, -1));
 
         buttonGroupSatisfaction.add(jRadioButton4);
         jRadioButton4.setMnemonic('4');
@@ -88,57 +97,11 @@ public class ObjSatisfactionScale extends javax.swing.JPanel{
                 jRadioButton4ActionPerformed(evt);
             }
         });
+        add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 124, -1, -1));
 
         buttonGroupSatisfaction.add(jRadioButton8);
         jRadioButton8.setMnemonic('8');
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jRadioButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton4)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton5)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton6)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton7)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton8)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButton9)
-                .addGap(104, 104, 104))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jRadioButton1)
-                        .addComponent(jRadioButton4, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(jRadioButton8)
-                    .addComponent(jRadioButton7)
-                    .addComponent(jRadioButton6)
-                    .addComponent(jRadioButton5)
-                    .addComponent(jRadioButton9)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton2))
-                .addContainerGap(9, Short.MAX_VALUE))
-        );
+        add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(381, 124, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
@@ -187,7 +150,6 @@ public class ObjSatisfactionScale extends javax.swing.JPanel{
             case 4 :
                 jRadioButton4.setSelected(true);
              case 5 :
-                 System.out.println("inferno");
                 jRadioButton5.setSelected(true);
             case 6 :
                 jRadioButton6.setSelected(true);

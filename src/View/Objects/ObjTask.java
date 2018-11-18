@@ -5,7 +5,7 @@
  */
 package View.Objects;
 
-import Control.TasksControl;
+import Control.EditQuestionnaireControl;
 import Model.Questionnaire.TaskModel;
 
 /**
@@ -89,12 +89,12 @@ public class ObjTask extends javax.swing.JPanel {
 
     private void jRenameItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRenameItemMousePressed
         // TODO add your handling code here:
-        TasksControl.getInstance().rename(task);
+        EditQuestionnaireControl.getInstance().renameTask(task);
     }//GEN-LAST:event_jRenameItemMousePressed
 
     private void jDeleteItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDeleteItemMousePressed
         // TODO add your handling code here:
-        TasksControl.getInstance().delete(task);
+        EditQuestionnaireControl.getInstance().deleteTask(task);
     }//GEN-LAST:event_jDeleteItemMousePressed
 
     private void jPopupMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPopupMenu1MouseClicked

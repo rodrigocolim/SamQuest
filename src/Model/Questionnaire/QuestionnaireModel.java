@@ -8,13 +8,9 @@ import java.util.ArrayList;
 public class QuestionnaireModel implements Serializable{
     private ArrayList<TaskModel> tasks;
     private String application;
-    private String projectName;
-    private String institution;
     private ArrayList<AnswerModel> results;
 
-    public QuestionnaireModel(String name, String org, String app) {
-        this.projectName=name;
-        this.institution=org;
+    public QuestionnaireModel(String app) {
         this.application=app;
         this.tasks=new ArrayList<>();
         this.results=new ArrayList<>();
@@ -24,9 +20,6 @@ public class QuestionnaireModel implements Serializable{
         
     }
     
-    public String getProjectName(){
-        return this.projectName;
-    }
     public ArrayList<TaskModel> getTasks(){
         return this.tasks;
     }
@@ -35,5 +28,8 @@ public class QuestionnaireModel implements Serializable{
     }
     public ArrayList<AnswerModel> getResults(){
         return results;
+    }
+    public void setApplication(String name){
+        this.application=name;
     }
 }

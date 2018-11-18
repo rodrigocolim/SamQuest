@@ -6,29 +6,36 @@ import Model.Questionnaire.AnswerModel;
 import Model.Questionnaire.QuestionnaireModel;
 import Model.Questionnaire.TaskModel;
 import Utilities.PDFManipulator;
+import Utilities.PersistenceController;
 import com.itextpdf.text.DocumentException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class ResearcherModel implements Serializable {
+
     private String name;
     private String email;
     private String password;
     private ArrayList<QuestionnaireModel> questionnaires = new ArrayList<>();
-    //mudar para receber o pesquisador da persistência
-    private static final ResearcherModel singleton = new ResearcherModel();
+    private static final ResearcherModel singleton = getSingletonObject();
     
     private ResearcherModel(){
-        this.questionnaires = new ArrayList<QuestionnaireModel>();
+    }
+    private static ResearcherModel getSingletonObject() {
+        ResearcherModel research = PersistenceController.getInstance().getResearchFromPresistence();
+        if(research == null){
+            return new ResearcherModel();
+        }else{
+            return research;
+        }
     }
     
-    public void editQuestionnaire(){
-        
+    public void renameApplication(QuestionnaireModel questionnaire, String name){
+        questionnaire.setApplication(name);
     }
- //   public void answerQuestionnaire(){ 
- //   }
-    public void deleteQuestionnaire(){
-    
+    public void deleteQuestionnaire(QuestionnaireModel questionnaire){
+        this.questionnaires.remove(questionnaire);
     }
     public void addTask(String nameTask, QuestionnaireModel questionnaire){
         questionnaire.getTasks().add(new TaskModel(nameTask));
@@ -37,8 +44,10 @@ public class ResearcherModel implements Serializable {
         
     }
     public void saveQuestPDF(QuestionnaireModel questionnaire){
-        String path = "Questionnaires/"+questionnaire.getProjectName()+".pdf";
+        String path = "Questionnaires/"+questionnaire.getApplication()+".pdf";
         PDFManipulator.generatePDFQeestionnaire(questionnaire, path);
+        JOptionPane.showMessageDialog(null, "Questionário salvo na pasta Questionnaires!", null, JOptionPane.INFORMATION_MESSAGE);
+
     }
     public void saveResultPDF(QuestionnaireModel questionnaire)throws DocumentException{
         String path = "Results/" + questionnaire.getApplication() + "_Resultados.pdf";
@@ -47,19 +56,12 @@ public class ResearcherModel implements Serializable {
     public void registerAnswer(QuestionnaireModel questionnaire, ArrayList<AnswerItemModel> answers, int id){
         AnswerModel answer = new AnswerModel(answers, id);
         questionnaire.getResults().add(answer);
-        for(AnswerModel a : questionnaire.getResults()){
-            for(AnswerItemModel b : a.getAnswers()){
-                System.out.println(b.getDomainValue());
-                System.out.println(b.getMotivationValue());
-                System.out.println(b.getSatisfactionValue());
-            }
-        }
     }
     public static ResearcherModel getInstance(){
         return singleton;
     }
-    public QuestionnaireModel createQuestionnaire(String name,String org,String app){
-        QuestionnaireModel questionnaire = new QuestionnaireModel(name, org, app);
+    public QuestionnaireModel createQuestionnaire(String application){
+        QuestionnaireModel questionnaire = new QuestionnaireModel(application);
         this.questionnaires.add(questionnaire);
         return questionnaire;
     }
@@ -72,7 +74,6 @@ public class ResearcherModel implements Serializable {
     }
     private int[][][] calculateResults(QuestionnaireModel questionnaire){
         int[][][] results = new int[questionnaire.getTasks().size()][3][3];
-
         for(AnswerModel answer : questionnaire.getResults()){
             for(AnswerItemModel itemAnswer : answer.getAnswers()){  
                 int task = answer.getAnswers().indexOf(itemAnswer);

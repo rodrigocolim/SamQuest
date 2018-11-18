@@ -8,8 +8,6 @@ package Control;
 import Model.Questionnaire.QuestionnaireModel;
 import Model.User.ResearcherModel;
 import View.AddTaskView;
-import View.Objects.ObjTask;
-
 /**
  *
  * @author rodri
@@ -26,13 +24,16 @@ public class AddTaskControl {
     }
     public void addTask(String nomeTask){
         ResearcherModel.getInstance().addTask(nomeTask, questionnaire);
-        //chamar um metodo no tasks control para atualizar as tarefas;
-        TasksControl.getInstance().updateJPanel();
+        EditQuestionnaireControl.getInstance().enableView();
+        EditQuestionnaireControl.getInstance().updateView();
     }
 
     public void showView(QuestionnaireModel questionnaire) {
         this.questionnaire=questionnaire;
         AddTaskView.main(null);
+    }
+    public void cancelTaskAddition(){
+        EditQuestionnaireControl.getInstance().enableView();
     }
    
 }

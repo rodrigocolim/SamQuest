@@ -7,9 +7,10 @@ package Control;
 
 import Model.Questionnaire.QuestionnaireModel;
 import Model.User.ResearcherModel;
-import View.CreateView;
+import Utilities.PersistenceController;
 import View.MainView;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,32 +18,43 @@ import java.util.ArrayList;
  */
 public class MainControl {
     private static final MainControl singleton = new MainControl();
-    
-    
+  
     private MainControl(){
         
     }
     public static MainControl getInstance(){
         return singleton;
     }
-    //------------------------------------------------//
+    //------------------------------------------------------------------------//
+  
     public void start(){
-        MainView.getViewSingleton().main(null);
+        MainView.getInstance().main(null);
     }
     public void showView(){
-        MainView.getViewSingleton().setVisible(true);
-        MainView.getViewSingleton().updateQuestionnaires();
+        MainView.getInstance().setVisible(true);
+        MainView.getInstance().setEnabled(true);
+        MainView.getInstance().updateQuestionnaires();
     }
-    public void advanceToNextView() {
-        CreateControl.getInstance().showView();
+    public void startCreation() {
+        DefineApplicationControl.getInstance().showView();
     }
     public ArrayList<QuestionnaireModel> getQuestionnaires(){
         return ResearcherModel.getInstance().getQuestionnaires();
     }
-    
-//-----------------------------------------------//
+    public void closeMainView() {
+        MainView.getInstance().setVisible(false);
+    }
+    public void delete(QuestionnaireModel questionnaire) {
+        String message = "Deseja excluir o questionário de "+questionnaire.getApplication()+"?";
+        int op = JOptionPane.showConfirmDialog(null, message, null, JOptionPane.YES_NO_OPTION);
+        if(op==0){
+            ResearcherModel.getInstance().deleteQuestionnaire(questionnaire);
+            JOptionPane.showMessageDialog(null, "Questionário excluído!");
+            MainView.getInstance().updateQuestionnaires();   
+        }
+    }
 
-    public void close() {
-        MainView.getViewSingleton().setVisible(false);
+    public void disableMainView() {
+        MainView.getInstance().disable();
     }
 }

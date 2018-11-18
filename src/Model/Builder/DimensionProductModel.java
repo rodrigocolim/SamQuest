@@ -5,13 +5,14 @@
  */
 package Model.Builder;
 
-import com.itextpdf.text.Image;
+import java.io.Serializable;
+
 
 /**
  *
  * @author rodri
  */
-public class DimensionProductModel {
+public class DimensionProductModel implements Serializable {
     private String statement;
     private String scale;
 
